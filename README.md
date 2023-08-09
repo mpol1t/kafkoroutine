@@ -1,4 +1,4 @@
-# AsyncKafka
+# kafkoroutine
 
 This repository offers Python-based asynchronous wrappers around `kafka-python`'s Producer and Consumer, bridging them
 seamlessly with Python's `asyncio`.
@@ -15,10 +15,10 @@ Follow these instructions to integrate the asynchronous Kafka components in your
 
 ### Installation
 
-Install `async-kafka` using pip:
+Install `kafkoroutine` using pip:
 
 ```bash
-pip install async-kafka
+pip install kafkoroutine
 ```
 
 Please note: this project requires Python 3.7 or later and is built upon the `kafka-python` library.
@@ -28,7 +28,7 @@ Please note: this project requires Python 3.7 or later and is built upon the `ka
 ### AsyncKafkaConsumer
 
 ```python
-from async_kafka.consumer import AsyncKafkaConsumer
+from kafkoroutine.consumer import AsyncKafkaConsumer
 
 async with AsyncKafkaConsumer(topics, executor, bootstrap_servers='localhost:9092') as consumer:
     async for message in consumer:
@@ -38,7 +38,7 @@ async with AsyncKafkaConsumer(topics, executor, bootstrap_servers='localhost:909
 ### AsyncKafkaProducer
 
 ```python
-from async_kafka.producer import AsyncKafkaProducer
+from kafkoroutine.producer import AsyncKafkaProducer
 
 async with AsyncKafkaProducer(executor, bootstrap_servers='localhost:9092') as producer:
     for msg in messages:

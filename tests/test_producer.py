@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch, AsyncMock
 
 import pytest
 
-from async_kafka.producer import AsyncKafkaProducer
+from kafkoroutine.producer import AsyncKafkaProducer
 
 
 def test_init():
@@ -113,7 +113,7 @@ async def test_aexit():
 
 @pytest.mark.asyncio
 async def test_create_producer():
-    with patch('async_kafka.producer.KafkaProducer') as mock_kafka_producer:
+    with patch('kafkoroutine.producer.KafkaProducer') as mock_kafka_producer:
         executor = ThreadPoolExecutor()
         bootstrap_servers = ["localhost:9092"]
         producer_kwargs = {"value_serializer": lambda v: str(v).encode('utf-8')}
@@ -148,7 +148,7 @@ async def test_create_producer():
 
 @pytest.mark.asyncio
 async def test_send():
-    with patch('async_kafka.producer.KafkaProducer') as mock_kafka_producer:
+    with patch('kafkoroutine.producer.KafkaProducer') as mock_kafka_producer:
         # Set up test variables
         bootstrap_servers = ["localhost:9092"]
         producer_kwargs = {"value_serializer": lambda v: str(v).encode('utf-8')}

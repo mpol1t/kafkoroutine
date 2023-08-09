@@ -7,7 +7,7 @@ import pytest
 from kafka import KafkaConsumer
 from kafka.errors import NoBrokersAvailable, KafkaError
 
-from async_kafka.consumer import AsyncKafkaConsumer
+from kafkoroutine.consumer import AsyncKafkaConsumer
 
 
 @pytest.mark.asyncio
@@ -70,7 +70,7 @@ async def test_create_consumer_successful_creation():
         return MagicMock()
 
     # We're mocking kafka.KafkaConsumer so that we don't hit a real Kafka instance.
-    with patch('async_kafka.consumer.KafkaConsumer', side_effect=side_effect_kafka_consumer):
+    with patch('kafkoroutine.consumer.KafkaConsumer', side_effect=side_effect_kafka_consumer):
         # When
         await consumer.create_consumer()
 
@@ -97,7 +97,7 @@ async def test_enter_async_context_manager():
     executor = ThreadPoolExecutor()
 
     # Try being more specific about the patch, depending on the actual import in AsyncKafkaConsumer.
-    with patch('async_kafka.consumer.KafkaConsumer', return_value=MagicMock()) as mock_kafka_consumer:
+    with patch('kafkoroutine.consumer.KafkaConsumer', return_value=MagicMock()) as mock_kafka_consumer:
         async with AsyncKafkaConsumer(topics, bootstrap_servers, executor) as consumer:
             assert consumer.consumer == mock_kafka_consumer.return_value
 
@@ -111,7 +111,7 @@ async def test_exit_async_context_manager():
     mock_kafka_consumer_instance = MagicMock()
 
     # Mock the KafkaConsumer
-    with patch('async_kafka.consumer.KafkaConsumer', return_value=mock_kafka_consumer_instance):
+    with patch('kafkoroutine.consumer.KafkaConsumer', return_value=mock_kafka_consumer_instance):
         consumer = AsyncKafkaConsumer(topics, bootstrap_servers, executor)
 
         # Manually enter and exit the async context to ensure __aexit__ gets called.
@@ -144,7 +144,7 @@ async def test_error_within_async_context_manager():
 
     # Here, we're setting the side_effect on the class instantiation itself,
     # not on an instance of the class.
-    with patch('async_kafka.consumer.KafkaConsumer', side_effect=KafkaError("Simulated Kafka Error")):
+    with patch('kafkoroutine.consumer.KafkaConsumer', side_effect=KafkaError("Simulated Kafka Error")):
         with pytest.raises(KafkaError, match="Simulated Kafka Error"):
             async with AsyncKafkaConsumer(topics, bootstrap_servers, executor) as consumer:
                 pass
@@ -175,7 +175,7 @@ async def test_normal_consumption():
     mock_consumer.return_value = mock_consumer  # Mocking the instance with the same mock.
 
     with patch.object(AsyncKafkaConsumer, "__anext__", new_callable=AsyncMock, return_value=mock_message), \
-            patch('async_kafka.consumer.KafkaConsumer', return_value=mock_consumer):
+            patch('kafkoroutine.consumer.KafkaConsumer', return_value=mock_consumer):
         async with AsyncKafkaConsumer(topics, bootstrap_servers, executor) as consumer:
             message = await consumer.__anext__()
             assert message == mock_message
@@ -191,7 +191,7 @@ async def test_general_exception_during_consuming():
 
     mock_kafka_consumer_instance = MagicMock()
 
-    with patch('async_kafka.consumer.KafkaConsumer', return_value=mock_kafka_consumer_instance):
+    with patch('kafkoroutine.consumer.KafkaConsumer', return_value=mock_kafka_consumer_instance):
         consumer = AsyncKafkaConsumer(topics, bootstrap_servers, executor)
 
         # Mocking run_in_executor to raise the exception

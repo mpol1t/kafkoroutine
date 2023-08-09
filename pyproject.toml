@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "async-kafka"
+name = "kafkoroutine"
 version = "0.1.0"
 description = "Asynchronous wrappers for kafka-python, integrating Kafka with Python's asyncio."
 authors = ["Michal Polit <mpolit@protonmail.com>"]
 readme = "README.md"
-homepage = "https://github.com/mpol1t/async-kafka"
-repository = "https://github.com/mpol1t/async-kafka"
+homepage = "https://github.com/mpol1t/kafkoroutine"
+repository = "https://github.com/mpol1t/kafkoroutine"
 license = "MIT"
-packages = [{include = "async_kafka"}]
+packages = [{include = "kafkoroutine"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
