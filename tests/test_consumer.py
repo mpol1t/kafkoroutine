@@ -69,7 +69,7 @@ async def test_create_consumer_successful_creation():
         return MagicMock()
 
     # We're mocking kafka.KafkaConsumer so that we don't hit a real Kafka instance.
-    with patch('kafka.KafkaConsumer', side_effect=side_effect_kafka_consumer):
+    with patch('async_kafka.consumer.KafkaConsumer', side_effect=side_effect_kafka_consumer):
         # When
         await consumer.create_consumer()
 
