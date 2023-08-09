@@ -22,7 +22,7 @@ class AsyncKafkaConsumer:
             self,
             topics: List[str] | str,
             bootstrap_servers: List[str] | str,
-            executor: Executor,
+            executor: Optional[Executor] = None,
             loop: Optional[AbstractEventLoop] = None,
             **kwargs: Any
     ) -> None:
