@@ -1,3 +1,8 @@
+[![codecov](https://codecov.io/gh/mpol1t/kafkoroutine/branch/main/graph/badge.svg?token=RzC2e7FqAH)](https://codecov.io/gh/mpol1t/kafkoroutine)
+![GitHub](https://img.shields.io/github/license/mpol1t/kafkoroutine)
+![PyPI](https://img.shields.io/pypi/v/kafkoroutine)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kafkoroutine)
+
 # kafkoroutine
 
 This repository offers Python-based asynchronous wrappers around `kafka-python`'s Producer and Consumer, bridging them
