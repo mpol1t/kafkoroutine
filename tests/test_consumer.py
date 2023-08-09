@@ -1,7 +1,7 @@
 import asyncio
 import logging
 from concurrent.futures import ThreadPoolExecutor
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch, MagicMock, AsyncMock
 
 import pytest
 from kafka.errors import NoBrokersAvailable, KafkaError
@@ -170,7 +170,7 @@ async def test_normal_consumption():
 
     mock_message = MagicMock()
 
-    with patch('builtins.next', return_value=mock_message):
+    with patch.object(AsyncKafkaConsumer, "__anext__", new_callable=AsyncMock, return_value=mock_message):
         async with AsyncKafkaConsumer(topics, bootstrap_servers, executor) as consumer:
             message = await consumer.__anext__()
             assert message == mock_message

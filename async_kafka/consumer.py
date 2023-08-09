@@ -86,35 +86,9 @@ class AsyncKafkaConsumer:
         """
         while True:
             try:
-                # Add a timeout for the executor task.
-                return await asyncio.wait_for(self.run_in_executor(next, self.iterator), timeout=5)
-            except asyncio.TimeoutError:
-                logging.error("Timeout when trying to get message from KafkaConsumer.")
-                raise
+                return await self.run_in_executor(next, self.iterator)
             except StopIteration:
                 raise StopAsyncIteration
             except Exception as e:
                 logging.exception("Exception occurred while consuming messages", exc_info=e)
                 raise
-
-#
-# EXAMPLES:
-# while True:  # retry loop for producer
-#     try:
-#         async with AsyncKafkaProducer(executor, bootstrap_servers='localhost:9092') as producer:
-#             for topic in topics:
-#                 message = f"Message for {topic}"
-#                 await producer.send(topic, message)
-#         break  # Break retry loop if production is successful
-#     except Exception as e:
-#         await await asyncio.sleep(1)
-#
-# while True:  # retry loop for consumer
-#     try:
-#         async with AsyncKafkaConsumer(topics, executor, bootstrap_servers='localhost:9092') as consumer:
-#             async for message in consumer:
-#                 print(f"Received: {message.value.decode('utf-8')}")
-#         consumer_backoff.reset()
-#         break  # Break retry loop if consumption is successful
-#     except Exception as e:
-#         await asyncio.sleep(1)
