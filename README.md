@@ -41,7 +41,7 @@ async with AsyncKafkaConsumer(topics=topics, bootstrap_servers='localhost:9092',
 from kafkoroutine.producer import AsyncKafkaProducer
 
 async with AsyncKafkaProducer(bootstrap_servers='localhost:9092', executor=None) as producer:
-    async for msg in messages:
+    for msg in messages:
         await producer.send(topic, msg)
 ```
 
