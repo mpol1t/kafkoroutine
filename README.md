@@ -30,7 +30,7 @@ Please note: this project requires Python 3.7 or later and is built upon the `ka
 ```python
 from kafkoroutine.consumer import AsyncKafkaConsumer
 
-async with AsyncKafkaConsumer(topics, executor, bootstrap_servers='localhost:9092') as consumer:
+async with AsyncKafkaConsumer(topics=topics, bootstrap_servers='localhost:9092', executor=None) as consumer:
     async for message in consumer:
         print(f"Received: {message.value.decode('utf-8')}")
 ```
@@ -40,8 +40,8 @@ async with AsyncKafkaConsumer(topics, executor, bootstrap_servers='localhost:909
 ```python
 from kafkoroutine.producer import AsyncKafkaProducer
 
-async with AsyncKafkaProducer(executor, bootstrap_servers='localhost:9092') as producer:
-    for msg in messages:
+async with AsyncKafkaProducer(bootstrap_servers='localhost:9092', executor=None) as producer:
+    async for msg in messages:
         await producer.send(topic, msg)
 ```
 

@@ -20,7 +20,7 @@ class AsyncKafkaProducer:
     def __init__(
             self,
             bootstrap_servers: List[str] | str,
-            executor: Executor,
+            executor: Optional[Executor] = None,
             loop: Optional[AbstractEventLoop] = None,
             **kwargs: Any
     ) -> None:
