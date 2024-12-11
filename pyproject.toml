@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kafkoroutine"
-version = "0.1.5"
+version = "0.1.6"
 description = "Asynchronous wrappers for kafka-python, integrating Kafka with Python's asyncio."
 authors = ["Michal Polit <mpolit@protonmail.com>"]
 readme = "README.md"
