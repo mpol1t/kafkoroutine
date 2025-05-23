@@ -1,1 +1,1 @@
-kafka-python==2.2.9
+kafka-python==2.2.10
