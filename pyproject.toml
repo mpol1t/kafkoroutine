@@ -1,13 +1,19 @@
 [tool.poetry]
 name = "kafkoroutine"
-version = "0.1.6"
-description = "Asynchronous wrappers for kafka-python, integrating Kafka with Python's asyncio."
+version = "0.1.7"
+description = "⚠️ This package is no longer maintained. No future updates will be released."
 authors = ["Michal Polit <mpolit@protonmail.com>"]
 readme = "README.md"
 homepage = "https://github.com/mpol1t/kafkoroutine"
 repository = "https://github.com/mpol1t/kafkoroutine"
 license = "MIT"
 packages = [{include = "kafkoroutine"}]
+classifiers = [
+    "Development Status :: 7 - Inactive",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
