@@ -3,6 +3,12 @@
 ![PyPI](https://img.shields.io/pypi/v/kafkoroutine)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/kafkoroutine)
 
+⚠️ This project is archived and no longer maintained. ⚠️
+
+This repository and the associated PyPI package (kafkoroutine) are no longer supported. No future updates will be released.
+
+Feel free to fork or take over maintenance if needed.
+
 # kafkoroutine
 
 This repository offers Python-based asynchronous wrappers around `kafka-python`'s Producer and Consumer, bridging them
